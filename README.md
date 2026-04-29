@@ -8,3 +8,4 @@
 |-----|-------------|
 | [EC2 Auto Scaling & Load Balancing](./ec2-autoscaling-loadbalancing/) | Build a multi-tier architecture with VPC, EC2, ALB, and Auto Scaling |
 | [Lambda Serverless](./lambda-serverless/) | Three hands-on Lambda labs: Hello World, Calculator, and S3 Image Processor |
+| [API + Cognito + SQS + SNS](./api+cognito+sqs+sns/) | REST API with Cognito auth, SQS order queue, SNS fan-out, and React integration app |
