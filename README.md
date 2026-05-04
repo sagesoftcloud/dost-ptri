@@ -10,3 +10,4 @@
 | [Lambda Serverless](./lambda-serverless/) | Three hands-on Lambda labs: Hello World, Calculator, and S3 Image Processor |
 | [API + Cognito + SQS + SNS](./api+cognito+sqs+sns/) | REST API with Cognito auth, SQS order queue, SNS fan-out, and React integration app |
 | [Bedrock GenAI](./bedrock-genai/) | Building with Amazon Bedrock — foundation model APIs, chatbots, RAG, image generation, and agentic AI |
+| [SageMaker Walkthrough](https://github.com/sagesoftcloud/dost-ptri-day5-sagemaker-walkthrough) | SageMaker console tour — Studio, JumpStart, Jobs, Models, Endpoints, Pipelines (no deployment, $0 cost) |
