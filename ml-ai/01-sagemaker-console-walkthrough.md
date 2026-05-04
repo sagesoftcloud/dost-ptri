@@ -38,7 +38,7 @@ Navigate the **Amazon SageMaker AI** dashboard to understand where each ML lifec
 
 > 💡 The domain itself is free. Costs only start when someone launches a notebook or app inside Studio.
 
-### Step 2: Create User Profiles for Each Participant
+### Step 2: Create User Profiles for Each Participant (Skip this part if there's already account)
 
 1. In the SageMaker AI console, click **Studio** → **Domain settings**
 2. Under **User profiles**, click **Add user profile**
