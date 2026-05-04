@@ -2,13 +2,13 @@
 
 ## Goal
 
-Navigate the **Amazon SageMaker AI** dashboard to understand where each ML lifecycle stage lives — Studio, JumpStart, Training Jobs, Models, Endpoints, and Pipelines. Includes a guided Studio tour using a shared domain with individual user profiles.
+Navigate **SageMaker Studio** to understand where each ML lifecycle stage lives — Models, JumpStart, Jobs, Deployments, Pipelines, and more. Includes a guided tour using a shared domain with individual user profiles.
 
-> 💡 As of December 2024, Amazon SageMaker was renamed to **Amazon SageMaker AI**. The console URL still uses `sagemaker`.
+> 💡 As of December 2024, Amazon SageMaker was renamed to **Amazon SageMaker AI**.
 
 ## Services Used
 
-- **Amazon SageMaker AI** — Console + Studio exploration
+- **Amazon SageMaker AI** — Studio exploration
 
 ## Setup Model
 
@@ -33,15 +33,14 @@ Navigate the **Amazon SageMaker AI** dashboard to understand where each ML lifec
 4. Click **Studio** in the left nav
 5. Click **Set up SageMaker Studio**
 6. Choose **Set up for single user (Quick setup)**
-   - This creates a domain with a default execution role
 7. Wait for the domain to be created (~2–3 minutes)
 
-> 💡 The domain itself is free. Costs only start when someone launches a notebook or app inside Studio.
+> 💡 The domain itself is free. Costs only start when someone launches a JupyterLab Space or app.
 
 ### Step 2: Create User Profiles for Each Participant (Skip this part if there's already account)
 
-1. In the SageMaker AI console, click **Studio** → **Domain settings**
-2. Under **User profiles**, click **Add user profile**
+1. In the SageMaker AI console, click **Domains** (under Admin configurations)
+2. Click on your domain → **Add user profile**
 3. Create a profile for each participant:
 
 | User Profile Name | For |
@@ -52,130 +51,172 @@ Navigate the **Amazon SageMaker AI** dashboard to understand where each ML lifec
 | `participant-4` | Participant 4 |
 | `participant-5` | Participant 5 |
 
-4. For each profile:
-   - **Execution role:** Use the default role created during domain setup
-   - Leave all other settings as default
-   - Click **Submit**
-
-> 💡 Each user profile is isolated — participants can browse Studio independently without affecting each other.
-
-### Step 3: Share Access
-
-Each participant logs in to the **same AWS account** via the AWS Console. When they navigate to SageMaker AI → Studio, they select their assigned user profile to enter Studio.
+4. For each: use the **default execution role** → **Submit**
 
 ---
 
-## Part B: All Participants — Open the SageMaker AI Dashboard (5 min)
+## Part B: All Participants — Open SageMaker Studio (5 min)
 
-### Step 1: Open the SageMaker AI Console
+### Step 1: Open Studio
 
 1. Log in to the **AWS Console**
-2. In the search bar, type **SageMaker** → click **Amazon SageMaker AI**
-3. Set your region to **ap-southeast-1** (Singapore) — top-right dropdown
+2. Search for **SageMaker** → click **Amazon SageMaker AI**
+3. Set region to **ap-southeast-1** (Singapore)
+4. Click **Studio** → select **your assigned user profile** (e.g., `participant-1`)
+5. Click **Open Studio**
 
-> 💡 You'll land on the **SageMaker AI dashboard**. The left navigation pane organizes everything by ML lifecycle stage.
+### Step 2: You Should See This
 
-### Step 2: Explore the Left Navigation Pane
+You'll land on the **SageMaker Studio Home** page:
 
-**Click through each section — don't create anything, just look.**
+- **Top bar:** `SageMaker Studio` with tabs for **JupyterLab** | **RStudio** | **Canvas**
+- **Top icons:** Code Editor, MLflow, More Apps (+)
+- **Content area:** Home page with **Overview** | **Getting started** | **Sample notebooks** tabs
+- Two large cards: **JupyterLab** and **Code Editor** (for creating Spaces)
+- Below: **Start your model customization workflow** — Browse, Customize, Deploy
+
+> ⚠️ **Don't click "View JupyterLab spaces" or "View Code Editor spaces"** — creating a Space launches compute that costs money. We're just touring.
+
+---
+
+## Part C: Studio Navigation Tour (15 min)
+
+The **left navigation pane** is your map to the entire ML lifecycle. Click through each section — **don't create anything, just look.**
+
+### Studio Left Navigation (Actual UI)
 
 ```
-📁 Amazon SageMaker AI — Left Navigation
+📁 SageMaker Studio — Left Navigation
+│
+├── 🤝 Partner AI Apps
 │
 ├── 🏠 Home
-│       Dashboard overview, quick links, recent activity
+│       Overview, Getting started, Sample notebooks
+│       JupyterLab & Code Editor cards
+│       Model customization workflow (Browse → Customize → Deploy)
 │
-├── 📊 Studio
-│       Integrated IDE for ML (notebooks, experiments, pipelines)
+├── 🧠 Models [New]
+│       Model Registry — versioning, approval workflows
+│       Model groups and model cards
 │
 ├── 🚀 JumpStart
-│       Pre-trained model catalog — deploy or fine-tune with one click
+│       Pre-trained model catalog (Llama, Nova, Qwen, GPT-OSS, etc.)
+│       One-click fine-tuning and deployment
 │
-├── ⚙️ Jobs
-│   ├── Training jobs — model training runs
-│   ├── Processing jobs — data processing runs
-│   └── Transform jobs — batch inference runs
+├── 📦 Assets ▾
+│       Data Wrangler, Feature Store, and other data assets
 │
-├── 📦 Models
-│   ├── Model Registry — versioning and approval workflows
-│   └── Model groups — organize models into collections
-│
-├── 🌐 Deployments
-│   ├── Endpoints — live models serving predictions
-│   ├── Endpoint configurations — instance type settings
-│   └── Inference Recommender — find optimal instance types
-│
-├── 🔄 Pipelines
-│       ML workflow automation (CI/CD for ML)
-│
-├── 🗂️ Data
-│   ├── Data Wrangler — visual data preparation
-│   └── Feature Store — reusable ML features
-│
-├── 🤖 Auto ML (Canvas)
-│       No-code ML — build models without writing code
+├── 💻 Compute ▾
+│       Running instances, Spaces, and compute resources
 │
 ├── 🧪 Experiments
 │       Track and compare ML experiment runs
 │
-└── 📓 Notebook instances (legacy)
-        Standalone Jupyter notebooks
+├── ⚙️ Jobs ▾
+│       Training jobs, Processing jobs, Transform jobs
+│
+├── 🔄 Pipelines
+│       ML workflow automation (CI/CD for ML)
+│
+├── 🌐 Deployments ▾
+│       Endpoints, Endpoint configurations, Inference Recommender
+│
+├── ⚙️ More ▾
+│       Additional settings and tools
+│
+└── 📁 Collapse Menu
 ```
 
 ---
 
-## Part C: Studio Tour — All Participants (10 min)
+### Section 1: Home
 
-### Step 1: Open Studio with Your User Profile
+This is the landing page you see when Studio opens.
 
-1. Click **Studio** in the left nav
-2. You'll see the domain with user profiles listed
-3. Select **your assigned user profile** (e.g., `participant-1`)
-4. Click **Open Studio**
-5. Studio opens in a new tab — this is the integrated IDE
+**What to observe:**
+- **Overview tab** — Quick-start cards for JupyterLab and Code Editor Spaces
+- **Getting started tab** — Guided tour and documentation links
+- **Sample notebooks tab** — Pre-built example notebooks you can explore
+- **Model customization workflow** — Three-step flow: **Browse** (find models) → **Customize** (fine-tune) → **Deploy** (serve predictions)
 
-> ⚠️ **Just browse the interface.** Do NOT launch any Spaces, notebooks, or apps — that spins up compute and costs money.
-
-### Step 2: Explore the Studio Navigation
-
-Inside Studio, the left nav shows:
-
-| Studio Section | Purpose |
-|---------------|---------|
-| **Home** | Overview, getting started, what's new |
-| **Running instances** | All currently running compute (should be empty) |
-| **Data** | Data Wrangler, Feature Store, EMR clusters |
-| **Auto ML** | SageMaker Canvas — no-code ML |
-| **Experiments** | Track and compare experiment runs |
-| **Jobs** | Training, processing, evaluation jobs |
-| **Pipelines** | ML workflow automation |
-| **Models** | Model Registry — version control for models |
-| **JumpStart** | Pre-trained model catalog |
-| **Deployments** | Endpoints and Inference Recommender |
-
-> 💡 Studio is a "one-stop shop" — everything in the SageMaker AI console is also accessible from inside Studio.
+> 💡 The Home page is designed to get you started fast — either launch a notebook or start a model workflow.
 
 ---
 
-## Part D: Console Walkthrough — Key Sections (15 min)
+### Section 2: Models [New]
 
-Go back to the **SageMaker AI console** (not Studio) and explore each section below.
+1. Click **Models** in the left nav
 
-### JumpStart — Pre-trained Models
+**What to observe:**
+- This is the **Model Registry** — version control for ML models
+- Organize models into **model groups** (like a Git repo for models)
+- Each group has multiple **versions** (like Git commits)
+- Each version has a **status**: PendingManualApproval → Approved → Rejected
+- Enables **approval workflows** — data scientist submits, lead reviews before deployment
+
+> 💡 The "New" badge means this section was recently redesigned. It now includes model cards with metadata, lineage, and deployment history.
+
+---
+
+### Section 3: JumpStart
 
 1. Click **JumpStart** in the left nav
-2. Browse the **catalog of pre-trained models**
-3. Models organized by **task type** (Text Generation, Image Classification, etc.)
-4. Click any model card to see: description, instance recommendations, deployment options
 
-> ⚠️ **Don't click Deploy** — deploying creates an endpoint that costs money.
+**What to observe:**
+- A **catalog of pre-trained models** from Amazon, Meta, Hugging Face, and more
+- The banner at the top highlights: fine-tuning of **Amazon Nova**, **Llama**, **Qwen**, and **GPT-OSS** models using Reinforcement Learning, Supervised Fine-tuning, and Direct Preference Optimization
+- Models organized by **task type** (Text Generation, Image Classification, etc.)
+- Click any model card to see: description, instance recommendations, deployment options
+
+> ⚠️ **Don't click Deploy or Fine-tune** — this creates resources that cost money.
 
 > 💡 JumpStart is like an "app store for ML models." Similar to Bedrock, but here **you host the model yourself** on SageMaker infrastructure.
 
-### Jobs — Training Jobs
+---
 
-1. Click **Jobs → Training jobs**
-2. List of training jobs (likely empty on a fresh account)
+### Section 4: Assets
+
+1. Click **Assets** (expandable ▾) in the left nav
+
+**What to observe:**
+- **Data Wrangler** — visual data preparation tool
+- **Feature Store** — store and reuse ML features across teams
+- Other data assets and artifacts
+
+---
+
+### Section 5: Compute
+
+1. Click **Compute** (expandable ▾) in the left nav
+
+**What to observe:**
+- **Spaces** — JupyterLab and Code Editor instances (this is where compute runs)
+- Running instances and their status
+- This is where costs come from — running Spaces bill per hour
+
+> ⚠️ If you see any running Spaces, **do not stop or delete them** unless they're yours.
+
+---
+
+### Section 6: Experiments
+
+1. Click **Experiments** in the left nav
+
+**What to observe:**
+- Track and compare ML experiment runs
+- Each experiment logs metrics, parameters, and artifacts
+- Useful for comparing different model configurations
+
+---
+
+### Section 7: Jobs
+
+1. Click **Jobs** (expandable ▾) in the left nav
+
+**Sub-sections:**
+- **Training jobs** — where model training runs appear
+- **Processing jobs** — data processing runs
+- **Transform jobs** — batch inference runs
 
 | Field | What It Means |
 |-------|--------------|
@@ -187,21 +228,29 @@ Go back to the **SageMaker AI console** (not Studio) and explore each section be
 
 > 💡 SageMaker AI manages the entire training lifecycle — provisions compute, pulls data from S3, trains, saves the model back to S3, and shuts down. You only pay while the job runs.
 
-### Models — Model Registry
+---
 
-1. Click **Models** in the left nav
+### Section 8: Pipelines
 
-**Model Registry**
-- Organize models into **model groups** (like a Git repo for models)
-- Each group has multiple **versions** (like Git commits)
-- Each version has a **status**: PendingManualApproval → Approved → Rejected
-- Enables **approval workflows** — data scientist submits, lead reviews before deployment
+1. Click **Pipelines** in the left nav
 
-> 💡 Model Registry = version control for ML models. Lifecycle: "trained" → "approved" → "deployed."
+**What to observe:**
+- Pipelines automate: **data prep → training → evaluation → registration → deployment**
+- Each pipeline is a **DAG** (Directed Acyclic Graph) of steps
+- Think of it as **CI/CD for machine learning**
 
-### Deployments — Endpoints
+> 💡 In production, you don't train models manually. Pipelines automate the lifecycle so models stay fresh as new data arrives.
 
-1. Click **Deployments → Endpoints**
+---
+
+### Section 9: Deployments
+
+1. Click **Deployments** (expandable ▾) in the left nav
+
+**Sub-sections:**
+- **Endpoints** — live models serving predictions
+- **Endpoint configurations** — instance type and scaling settings
+- **Inference Recommender** — find optimal instance types for your model
 
 | Field | What It Means |
 |-------|--------------|
@@ -210,41 +259,32 @@ Go back to the **SageMaker AI console** (not Studio) and explore each section be
 | **Endpoint configuration** | Instance type, count |
 | **Production variants** | Which model version is being served |
 
-2. Also check **Deployments → Endpoint configurations** — the blueprint for an endpoint
-
 > 💡 An endpoint is a live HTTPS API serving predictions. It costs money while running. Pattern: **Model → Endpoint Config → Endpoint**.
-
-### Pipelines — ML Workflow Automation
-
-1. Click **Pipelines** in the left nav
-2. Pipelines automate: **data prep → training → evaluation → registration → deployment**
-3. Each pipeline is a **DAG** (Directed Acyclic Graph) of steps
-
-> 💡 Think of it as **CI/CD for machine learning** — models stay fresh as new data arrives.
 
 ---
 
-## Summary: The ML Lifecycle in SageMaker AI
+## Summary: The ML Lifecycle in SageMaker Studio
 
 ```
 ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
 │   Prepare    │    │    Train    │    │  Register   │    │   Deploy    │
-│   (Data)     │ →  │   (Jobs)    │ →  │  (Models)   │ →  │ (Endpoints) │
+│  (Assets)    │ →  │   (Jobs)    │ →  │  (Models)   │ →  │(Deployments)│
 └─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
   Data Wrangler      Training Jobs     Model Registry      Endpoints
   Feature Store      Experiments       Approval Flow       Inference
   S3                 Hyperparameters   Versioning          Monitoring
 ```
 
-| ML Stage | Console Section | What Happens |
-|----------|----------------|-------------|
-| **Prepare** | Data (Wrangler, Feature Store) | Clean, transform, store features |
+| ML Stage | Studio Section | What Happens |
+|----------|---------------|-------------|
+| **Prepare** | Assets (Wrangler, Feature Store) | Clean, transform, store features |
 | **Train** | Jobs → Training jobs | Run training on managed compute |
 | **Experiment** | Experiments | Track and compare runs |
-| **Register** | Models → Model Registry | Version and approve models |
+| **Register** | Models | Version and approve models |
 | **Deploy** | Deployments → Endpoints | Serve predictions via HTTPS API |
 | **Automate** | Pipelines | CI/CD for the entire lifecycle |
 | **Browse** | JumpStart | Pre-trained models off the shelf |
+| **Code** | Home → JupyterLab / Code Editor | Write and run ML code |
 
 ---
 
@@ -254,8 +294,8 @@ After the walkthrough, the **admin** should clean up:
 
 ### 1. Delete User Profiles
 
-1. SageMaker AI → Studio → **Domain settings**
-2. Under **User profiles**, select each profile → **Delete**
+1. Go to **SageMaker AI console** (not Studio) → **Domains**
+2. Click your domain → select each user profile → **Delete**
 3. Repeat for all 5 participant profiles
 
 ### 2. Delete the Domain
@@ -263,7 +303,7 @@ After the walkthrough, the **admin** should clean up:
 1. After all user profiles are deleted, click **Delete domain**
 2. Confirm deletion
 
-> ⚠️ If anyone accidentally launched a Space or app inside Studio, stop/delete it first before deleting the user profile.
+> ⚠️ If anyone accidentally launched a Space inside Studio, stop/delete it first before deleting the user profile.
 
 ---
 
