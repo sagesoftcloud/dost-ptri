@@ -10,3 +10,4 @@
 | [Lambda Serverless](./lambda-serverless/) | Three hands-on Lambda labs: Hello World, Calculator, and S3 Image Processor |
 | [API + Cognito + SQS + SNS](./api+cognito+sqs+sns/) | REST API with Cognito auth, SQS order queue, SNS fan-out, and React integration app |
 | [ML/AI — SageMaker AI & Bedrock](./ml-ai/) | SageMaker AI console walkthrough + Amazon Bedrock GenAI hands-on workshop |
+| [CI/CD & Infrastructure as Code](./cicd-deployment/) | CI/CD pipeline demo with CodeBuild, CodeDeploy, and CloudFormation IaC |
