@@ -217,7 +217,7 @@ sudo systemctl enable codedeploy-agent
 
 1. Go to **CodePipeline** → **Create pipeline**
 
-### Step 1: Choose creation option
+**Step 1: Choose creation option**
 
 | Setting | Value |
 |---------|-------|
@@ -225,45 +225,57 @@ sudo systemctl enable codedeploy-agent
 
 2. Click **Next**
 
-### Step 2: Configure pipeline
+**Step 2: Choose pipeline settings**
 
 | Setting | Value |
 |---------|-------|
 | Pipeline name | `dost-ptri-day6-pipeline` |
-| Pipeline type | V2 |
+| Execution mode | **Superseded** |
 | Service role | **New service role** |
 
 3. Click **Next**
 
-### Step 3: Add stages
-
-**Source stage:**
+**Step 3: Add source stage**
 
 | Setting | Value |
 |---------|-------|
 | Source provider | **GitHub (Version 2)** |
-| Connection | Click **Connect to GitHub** → Connection name: `dost-ptri-github` → Authorize → **Connect** |
+| Connection | Select `dost-ptri-github` (created earlier in CodeBuild) |
 | Repository name | Your `dost-ptri-day6-cicd` repo |
 | Branch name | `main` |
+| Trigger | **Push to branch** |
 
-> 💡 The connection is created here. Once status shows **Available**, select your repo and branch.
+4. Click **Next**
 
-**Build stage:**
+**Step 4: Add build stage**
 
 | Setting | Value |
 |---------|-------|
 | Build provider | **AWS CodeBuild** |
-| Project | `dost-ptri-day6-build` |
+| Region | **Asia Pacific (Singapore)** |
+| Project name | `dost-ptri-day6-build` |
+| Build type | **Single build** |
 
-**Deploy stage:**
+5. Click **Next**
+
+**Step 5: Add test stage (optional)**
+
+6. Click **Skip test stage** → Confirm skip
+
+**Step 6: Add deploy stage**
 
 | Setting | Value |
 |---------|-------|
 | Deploy provider | **AWS CodeDeploy** |
+| Region | **Asia Pacific (Singapore)** |
 | Application name | `dost-ptri-day6-app` |
 | Deployment group | `dost-ptri-day6-deploy-group` |
 
-4. Review → **Create pipeline**
+7. Click **Next**
+
+**Step 7: Review**
+
+8. Review all stages → Click **Create pipeline**
 
 ---
 

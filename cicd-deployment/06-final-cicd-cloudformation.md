@@ -320,19 +320,42 @@ Should show: `active (running)` ✅
 
 ### C2. Create CodePipeline
 
-1. **CodePipeline** → Create pipeline
-2. **Step 1 — Choose creation option:**
-   - Category: **Build custom pipeline**
-   - Click **Next**
-3. **Step 2 — Configure pipeline:**
-   - Name: `dost-ptri-final-pipeline`
-   - Type: V2, New service role
-   - Click **Next**
-4. **Step 3 — Add stages:**
-   - **Source:** GitHub (Version 2) → Click **Connect to GitHub** → Connection name: `dost-ptri-github` → Authorize → Connect → Select your repo → Branch: `main`
-   - **Build:** CodeBuild → `dost-ptri-final-build`
-   - **Deploy:** AWS CodeDeploy → Application: `dost-ptri-final-app` → Group: `dost-ptri-final-deploy-group`
-5. Review → **Create pipeline**
+1. **CodePipeline** → **Create pipeline**
+
+**Step 1: Choose creation option**
+- Category: **Build custom pipeline** → **Next**
+
+**Step 2: Choose pipeline settings**
+- Pipeline name: `dost-ptri-final-pipeline`
+- Execution mode: **Superseded**
+- Service role: **New service role**
+- Click **Next**
+
+**Step 3: Add source stage**
+- Source provider: **GitHub (Version 2)**
+- Connection: Select `dost-ptri-github`
+- Repository: your `dost-ptri-day6-cicd` repo
+- Branch: `main`
+- Click **Next**
+
+**Step 4: Add build stage**
+- Build provider: **AWS CodeBuild**
+- Region: **Asia Pacific (Singapore)**
+- Project name: `dost-ptri-final-build`
+- Click **Next**
+
+**Step 5: Add test stage**
+- Click **Skip test stage** → Confirm
+
+**Step 6: Add deploy stage**
+- Deploy provider: **AWS CodeDeploy**
+- Region: **Asia Pacific (Singapore)**
+- Application name: `dost-ptri-final-app`
+- Deployment group: `dost-ptri-final-deploy-group`
+- Click **Next**
+
+**Step 7: Review**
+- Review all stages → **Create pipeline**
 
 ---
 
