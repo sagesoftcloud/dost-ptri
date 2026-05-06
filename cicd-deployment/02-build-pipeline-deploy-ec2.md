@@ -52,24 +52,24 @@ CodeDeploy needs the EC2 instance to have an agent that communicates with AWS.
 | Network | Default VPC, public subnet |
 | Auto-assign public IP | **Enable** |
 | Security group | Create new: `dost-ptri-day6-sg` |
-| Inbound rules | SSH (22) from Anywhere, HTTP (8080) from Anywhere |
+| Inbound rules | SSH (22) from **My IP**, HTTP (8080) from Anywhere |
 | IAM instance profile | Select `dost-ptri-ec2-codedeploy-role` |
 
 3. Under **Advanced details** → **User data**, paste:
 
 ```bash
 #!/bin/bash
-yum update -y
-yum install -y python3 python3-pip ruby wget
-pip3 install flask
+sudo yum update -y
+sudo yum install -y python3 python3-pip ruby wget
+sudo pip3 install flask
 
 # Install CodeDeploy Agent
 cd /home/ec2-user
-wget https://aws-codedeploy-ap-southeast-1.s3.ap-southeast-1.amazonaws.com/latest/install
-chmod +x ./install
-./install auto
-systemctl start codedeploy-agent
-systemctl enable codedeploy-agent
+sudo wget https://aws-codedeploy-ap-southeast-1.s3.ap-southeast-1.amazonaws.com/latest/install
+sudo chmod +x ./install
+sudo ./install auto
+sudo systemctl start codedeploy-agent
+sudo systemctl enable codedeploy-agent
 ```
 
 4. Click **Launch instance**

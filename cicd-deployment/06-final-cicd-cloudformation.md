@@ -66,10 +66,12 @@ Resources:
           FromPort: 22
           ToPort: 22
           CidrIp: 0.0.0.0/0
+          Description: SSH - restrict to your IP in production
         - IpProtocol: tcp
           FromPort: 8080
           ToPort: 8080
           CidrIp: 0.0.0.0/0
+          Description: Application port
       Tags:
         - Key: Name
           Value: !Sub ${ProjectName}-sg
@@ -129,16 +131,16 @@ Resources:
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash
-          yum update -y
-          yum install -y python3 python3-pip ruby wget
-          pip3 install flask
+          sudo yum update -y
+          sudo yum install -y python3 python3-pip ruby wget
+          sudo pip3 install flask
           # Install CodeDeploy Agent
           cd /home/ec2-user
-          wget https://aws-codedeploy-${AWS::Region}.s3.${AWS::Region}.amazonaws.com/latest/install
-          chmod +x ./install
-          ./install auto
-          systemctl start codedeploy-agent
-          systemctl enable codedeploy-agent
+          sudo wget https://aws-codedeploy-${AWS::Region}.s3.${AWS::Region}.amazonaws.com/latest/install
+          sudo chmod +x ./install
+          sudo ./install auto
+          sudo systemctl start codedeploy-agent
+          sudo systemctl enable codedeploy-agent
 
   # --- CodeDeploy Application ---
   CodeDeployApp:

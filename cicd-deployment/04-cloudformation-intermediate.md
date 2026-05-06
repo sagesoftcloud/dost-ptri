@@ -118,6 +118,7 @@ Resources:
           FromPort: 22
           ToPort: 22
           CidrIp: 0.0.0.0/0
+          Description: Restrict to your IP in production
       Tags:
         - Key: Name
           Value: !Sub ${ProjectName}-web-sg
