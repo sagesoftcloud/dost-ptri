@@ -256,7 +256,7 @@ Should show: `active (running)` ✅
 
 1. **CodeBuild** → Create project
    - Name: `dost-ptri-final-build`
-   - Source: GitHub (your `dost-ptri-day6-cicd` repo)
+   - Source: GitHub (via connection) → your `dost-ptri-day6-cicd` repo
    - Environment: Amazon Linux, Standard, `5.0`
    - Buildspec: `buildspec.yml`
    - Artifacts: No artifacts (pipeline handles it)
@@ -273,7 +273,7 @@ Should show: `active (running)` ✅
    - Type: V2, New service role
    - Click **Next**
 4. **Step 3 — Add stages:**
-   - **Source:** GitHub → authorize → your repo → `main` branch
+   - **Source:** GitHub (Version 2) → Click **Connect to GitHub** → Connection name: `dost-ptri-github` → Authorize → Connect → Select your repo → Branch: `main`
    - **Build:** CodeBuild → `dost-ptri-final-build`
    - **Deploy:** AWS CodeDeploy → Application: `dost-ptri-final-app` → Group: `dost-ptri-final-deploy-group`
 5. Review → **Create pipeline**
@@ -380,6 +380,7 @@ curl http://YOUR-EC2-IP:8080/deployed-by
 2. **Delete CodeBuild project** → CodeBuild → Delete
 3. **Delete the CloudFormation stack** → this removes EC2, IAM roles, SG, CodeDeploy app — everything
 4. **Delete S3 artifact bucket** (created by pipeline) → empty then delete
+5. **Delete GitHub connection** → CodePipeline → Settings → Connections → Delete `dost-ptri-github`
 
 > 💡 Because we used CloudFormation, most cleanup is just deleting one stack.
 
