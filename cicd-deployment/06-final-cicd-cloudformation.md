@@ -252,13 +252,7 @@ Should show: `active (running)` ✅
 
 ## Part C: Create the Pipeline (15 min)
 
-Now create a pipeline that deploys to the infrastructure you just provisioned.
-
-### C1. Create GitHub Connection (if not already done)
-
-1. **CodePipeline** → Settings → Connections → Create → GitHub → Authorize
-
-### C2. Create CodeBuild Project
+### C1. Create CodeBuild Project
 
 1. **CodeBuild** → Create project
    - Name: `dost-ptri-final-build`
@@ -268,7 +262,7 @@ Now create a pipeline that deploys to the infrastructure you just provisioned.
    - Artifacts: No artifacts (pipeline handles it)
 2. Create
 
-### C3. Create CodePipeline
+### C2. Create CodePipeline
 
 1. **CodePipeline** → Create pipeline
 2. **Step 1 — Choose creation option:**
@@ -279,7 +273,7 @@ Now create a pipeline that deploys to the infrastructure you just provisioned.
    - Type: V2, New service role
    - Click **Next**
 4. **Step 3 — Add stages:**
-   - **Source:** GitHub (via connection) → your repo → `main` branch
+   - **Source:** GitHub → authorize → your repo → `main` branch
    - **Build:** CodeBuild → `dost-ptri-final-build`
    - **Deploy:** AWS CodeDeploy → Application: `dost-ptri-final-app` → Group: `dost-ptri-final-deploy-group`
 5. Review → **Create pipeline**
@@ -386,7 +380,6 @@ curl http://YOUR-EC2-IP:8080/deployed-by
 2. **Delete CodeBuild project** → CodeBuild → Delete
 3. **Delete the CloudFormation stack** → this removes EC2, IAM roles, SG, CodeDeploy app — everything
 4. **Delete S3 artifact bucket** (created by pipeline) → empty then delete
-5. **Delete GitHub connection** → CodePipeline Settings → Connections → Delete
 
 > 💡 Because we used CloudFormation, most cleanup is just deleting one stack.
 

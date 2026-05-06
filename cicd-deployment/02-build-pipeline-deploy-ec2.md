@@ -129,22 +129,14 @@ sudo systemctl enable codedeploy-agent
 
 ## Part C: Create the Pipeline (15 min)
 
-### C1. Create GitHub Connection
-
-1. Go to **CodePipeline** → **Settings** → **Connections**
-2. Click **Create connection** → **GitHub**
-3. Connection name: `dost-ptri-github`
-4. Authorize and install on your repo
-5. Status: **Available** ✅
-
-### C2. Create CodeBuild Project
+### C1. Create CodeBuild Project
 
 1. Go to **CodeBuild** → **Create build project**
 
 | Setting | Value |
 |---------|-------|
 | Project name | `dost-ptri-day6-build` |
-| Source | GitHub (via connection) → your repo |
+| Source | GitHub → authorize → select your repo |
 | Environment | Managed image, Amazon Linux, Standard, `5.0` |
 | Buildspec | Use a buildspec file |
 | Artifacts | **Amazon S3** |
@@ -153,7 +145,7 @@ sudo systemctl enable codedeploy-agent
 
 2. Click **Create build project**
 
-### C3. Create CodePipeline
+### C2. Create CodePipeline
 
 1. Go to **CodePipeline** → **Create pipeline**
 
@@ -181,8 +173,8 @@ sudo systemctl enable codedeploy-agent
 
 | Setting | Value |
 |---------|-------|
-| Source provider | **GitHub (via connection)** |
-| Connection | `dost-ptri-github` |
+| Source provider | **GitHub** |
+| Connection | Create new or select existing → authorize your GitHub |
 | Repository | Your `dost-ptri-day6-cicd` repo |
 | Branch | `main` |
 
@@ -325,7 +317,6 @@ Delete in this order:
 4. **EC2** → Terminate instance
 5. **S3** → Empty and delete artifact bucket
 6. **IAM** → Delete both roles (`ec2-codedeploy-role`, `codedeploy-service-role`)
-7. **CodePipeline Settings** → Delete GitHub connection
 
 ---
 
