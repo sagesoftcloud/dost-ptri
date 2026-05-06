@@ -286,8 +286,10 @@ Should show: `active (running)` ✅
 | Connection | Select your connection ARN |
 | Repository | **Repository in my GitHub account** → `dost-ptri-day6-cicd` |
 | Source version | Leave blank |
-| Webhook | ❌ Unchecked |
+| Webhook | ❌ **UNCHECK** "Rebuild every time a code change is pushed" |
 | Build type | **Single build** |
+
+> ⚠️ Leave webhook unchecked or you'll get "Failed to create webhook" error.
 
 **Environment:**
 

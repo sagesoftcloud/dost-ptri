@@ -174,8 +174,10 @@ sudo systemctl enable codedeploy-agent
 
 | Setting | Value |
 |---------|-------|
-| Webhook | ❌ Leave unchecked (pipeline handles triggers) |
+| Webhook | ❌ **UNCHECK** "Rebuild every time a code change is pushed to this repository" |
 | Build type | **Single build** |
+
+> ⚠️ If you leave webhook checked, you'll get an error: "Failed to create webhook." Uncheck it — the pipeline will handle triggers instead.
 
 **Environment:**
 
