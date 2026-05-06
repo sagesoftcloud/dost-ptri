@@ -261,8 +261,11 @@ Should show: `active (running)` ✅
    - Click **Manage account credentials** → **Manage default source credential** dialog:
      - Source Provider: **GitHub**
      - Credential type: **GitHub App**
-     - Click **Connect to GitHub** → authorize
-   - Once connected, select repository: your `dost-ptri-day6-cicd` repo
+     - Connection: Click **Create a new GitHub connection**
+     - Connection name: `dost-ptri-github`
+     - Click **Connect to GitHub** → Authorize → Select your account → Only select repositories → `dost-ptri-day6-cicd` → Install & Authorize
+     - Back in AWS → Click **Connect** → Status: **Available** ✅ → **Save**
+   - Now select repository: your `dost-ptri-day6-cicd` repo
    - Branch: `main`
    - Environment: Amazon Linux, Standard, `5.0`
    - Buildspec: `buildspec.yml`

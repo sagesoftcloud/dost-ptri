@@ -142,9 +142,17 @@ sudo systemctl enable codedeploy-agent
    - Click **Manage account credentials**
    - **Manage default source credential** dialog appears:
      - Source Provider: **GitHub**
-     - Credential type: **GitHub App** (recommended)
-     - Click **Connect to GitHub** → follow the authorization flow
-     - Once connected, select your repository: `dost-ptri-day6-cicd`
+     - Credential type: **GitHub App**
+     - Connection: Click **Create a new GitHub connection**
+     - Connection name: `dost-ptri-github`
+     - Click **Connect to GitHub**
+     - A popup opens → Click **Authorize AWS Connector for GitHub**
+     - Select your GitHub account
+     - Choose **Only select repositories** → select `dost-ptri-day6-cicd`
+     - Click **Install & Authorize**
+     - Back in AWS → Click **Connect**
+     - Status shows **Available** ✅ → Click **Save**
+   - Now select your repository: `dost-ptri-day6-cicd`
 
 | Setting | Value |
 |---------|-------|
