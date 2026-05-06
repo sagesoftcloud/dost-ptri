@@ -271,19 +271,18 @@ Now create a pipeline that deploys to the infrastructure you just provisioned.
 ### C3. Create CodePipeline
 
 1. **CodePipeline** → Create pipeline
+2. **Step 1 — Choose creation option:**
+   - Category: **Build custom pipeline**
+   - Click **Next**
+3. **Step 2 — Configure pipeline:**
    - Name: `dost-ptri-final-pipeline`
    - Type: V2, New service role
-
-2. **Source:** GitHub → your repo → `main` branch
-
-3. **Build:** CodeBuild → `dost-ptri-final-build`
-
-4. **Deploy:**
-   - Provider: **AWS CodeDeploy**
-   - Application: `dost-ptri-final-app` (from CloudFormation Outputs)
-   - Deployment group: `dost-ptri-final-deploy-group`
-
-5. Create pipeline
+   - Click **Next**
+4. **Step 3 — Add stages:**
+   - **Source:** GitHub (via connection) → your repo → `main` branch
+   - **Build:** CodeBuild → `dost-ptri-final-build`
+   - **Deploy:** AWS CodeDeploy → Application: `dost-ptri-final-app` → Group: `dost-ptri-final-deploy-group`
+5. Review → **Create pipeline**
 
 ---
 

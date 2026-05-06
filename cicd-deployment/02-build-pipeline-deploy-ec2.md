@@ -157,37 +157,51 @@ sudo systemctl enable codedeploy-agent
 
 1. Go to **CodePipeline** → **Create pipeline**
 
+### Step 1: Choose creation option
+
+| Setting | Value |
+|---------|-------|
+| Category | **Build custom pipeline** |
+
+2. Click **Next**
+
+### Step 2: Configure pipeline
+
 | Setting | Value |
 |---------|-------|
 | Pipeline name | `dost-ptri-day6-pipeline` |
 | Pipeline type | V2 |
-| Service role | New service role |
+| Service role | **New service role** |
 
-2. **Source stage:**
+3. Click **Next**
+
+### Step 3: Add stages
+
+**Source stage:**
 
 | Setting | Value |
 |---------|-------|
-| Provider | GitHub (via connection) |
+| Source provider | **GitHub (via connection)** |
 | Connection | `dost-ptri-github` |
 | Repository | Your `dost-ptri-day6-cicd` repo |
 | Branch | `main` |
 
-3. **Build stage:**
+**Build stage:**
 
 | Setting | Value |
 |---------|-------|
-| Provider | AWS CodeBuild |
+| Build provider | **AWS CodeBuild** |
 | Project | `dost-ptri-day6-build` |
 
-4. **Deploy stage:**
+**Deploy stage:**
 
 | Setting | Value |
 |---------|-------|
-| Provider | **AWS CodeDeploy** |
+| Deploy provider | **AWS CodeDeploy** |
 | Application name | `dost-ptri-day6-app` |
 | Deployment group | `dost-ptri-day6-deploy-group` |
 
-5. Click **Create pipeline**
+4. Review → **Create pipeline**
 
 ---
 
