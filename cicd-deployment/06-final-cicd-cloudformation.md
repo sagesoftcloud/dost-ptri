@@ -402,3 +402,7 @@ You've demonstrated a **production-level deployment workflow**:
 - ✅ One-click teardown of everything
 
 **This is how real companies deploy software on AWS.**
+
+---
+
+**← [Back to Lab Overview](./README.md)**

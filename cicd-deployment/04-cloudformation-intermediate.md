@@ -172,3 +172,7 @@ Delete stack → all 8 resources removed in correct reverse order ✅
 ## ✅ Lab Complete!
 
 **Concepts practiced:** `!Sub`, `!Select`, `!GetAZs`, `DependsOn`, multi-resource dependencies, automatic ordering
+
+---
+
+**Next → [Lab 05: CloudFormation Advanced — Serverless API](./05-cloudformation-advanced.md)**

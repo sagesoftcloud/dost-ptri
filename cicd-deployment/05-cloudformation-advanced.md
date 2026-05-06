@@ -196,3 +196,7 @@ Delete stack → all resources removed ✅
 ## ✅ Lab Complete!
 
 **6 resources, 1 template, 1 click deploy.** Concepts: pseudo parameters, inline Lambda, IAM policies, API Gateway proxy.
+
+---
+
+**Next → [Lab 06: Final — CI/CD + CloudFormation Deploy EC2](./06-final-cicd-cloudformation.md)**

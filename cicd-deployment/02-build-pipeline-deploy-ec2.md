@@ -328,3 +328,7 @@ You built a real production-like CI/CD pipeline:
 | EC2 | Your production server running the app |
 
 **This is exactly how companies deploy software to production.**
+
+---
+
+**Next → [Lab 03: CloudFormation Basic — S3 Bucket](./03-cloudformation-basic.md)**

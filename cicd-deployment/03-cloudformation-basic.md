@@ -105,3 +105,7 @@ Select stack → **Delete** → confirm → bucket gone ✅
 ## ✅ Lab Complete!
 
 **Concepts practiced:** Parameters, Resources, Outputs, `!Ref`, `!GetAtt`, Tags
+
+---
+
+**Next → [Lab 04: CloudFormation Intermediate — VPC Stack](./04-cloudformation-intermediate.md)**

@@ -163,3 +163,7 @@ You've successfully:
 - Created your own repository
 - Pushed code with Git
 - Understood how `git push` triggers CI/CD pipelines
+
+---
+
+**Next → [Lab 02: Build Pipeline & Deploy to EC2](./02-build-pipeline-deploy-ec2.md)**
