@@ -140,9 +140,11 @@ sudo systemctl enable codedeploy-agent
 
 2. You'll see: *"You have not connected to GitHub. Manage account credentials."*
    - Click **Manage account credentials**
-   - Select **Use override credentials for this project only**
-   - Authorize CodeBuild to access your GitHub account
-   - Once connected, select your repository: `dost-ptri-day6-cicd`
+   - **Manage default source credential** dialog appears:
+     - Source Provider: **GitHub**
+     - Credential type: **GitHub App** (recommended)
+     - Click **Connect to GitHub** → follow the authorization flow
+     - Once connected, select your repository: `dost-ptri-day6-cicd`
 
 | Setting | Value |
 |---------|-------|

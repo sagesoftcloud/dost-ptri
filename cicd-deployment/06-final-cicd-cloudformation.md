@@ -258,7 +258,10 @@ Should show: `active (running)` ✅
    - Name: `dost-ptri-final-build`
    - Source provider: **GitHub**
    - You'll see: *"You have not connected to GitHub. Manage account credentials."*
-   - Click **Manage account credentials** → Select **Use override credentials for this project only** → Authorize
+   - Click **Manage account credentials** → **Manage default source credential** dialog:
+     - Source Provider: **GitHub**
+     - Credential type: **GitHub App**
+     - Click **Connect to GitHub** → authorize
    - Once connected, select repository: your `dost-ptri-day6-cicd` repo
    - Branch: `main`
    - Environment: Amazon Linux, Standard, `5.0`
