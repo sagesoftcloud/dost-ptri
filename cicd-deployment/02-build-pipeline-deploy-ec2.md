@@ -136,14 +136,25 @@ sudo systemctl enable codedeploy-agent
 | Setting | Value |
 |---------|-------|
 | Project name | `dost-ptri-day6-build` |
-| Source | GitHub (via connection) → select your repo |
+| Source provider | **GitHub** |
+
+2. You'll see: *"You have not connected to GitHub. Manage account credentials."*
+   - Click **Manage account credentials**
+   - Select **Use override credentials for this project only**
+   - Authorize CodeBuild to access your GitHub account
+   - Once connected, select your repository: `dost-ptri-day6-cicd`
+
+| Setting | Value |
+|---------|-------|
+| Repository | Your `dost-ptri-day6-cicd` repo |
+| Branch | `main` |
 | Environment | Managed image, Amazon Linux, Standard, `5.0` |
 | Buildspec | Use a buildspec file |
 | Artifacts | **Amazon S3** |
 | Bucket | Create one: `dost-ptri-day6-artifacts-YOURNAME` |
 | Artifacts packaging | **Zip** |
 
-2. Click **Create build project**
+3. Click **Create build project**
 
 ### C2. Create CodePipeline
 

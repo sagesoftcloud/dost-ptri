@@ -256,7 +256,11 @@ Should show: `active (running)` ✅
 
 1. **CodeBuild** → Create project
    - Name: `dost-ptri-final-build`
-   - Source: GitHub (via connection) → your `dost-ptri-day6-cicd` repo
+   - Source provider: **GitHub**
+   - You'll see: *"You have not connected to GitHub. Manage account credentials."*
+   - Click **Manage account credentials** → Select **Use override credentials for this project only** → Authorize
+   - Once connected, select repository: your `dost-ptri-day6-cicd` repo
+   - Branch: `main`
    - Environment: Amazon Linux, Standard, `5.0`
    - Buildspec: `buildspec.yml`
    - Artifacts: No artifacts (pipeline handles it)
