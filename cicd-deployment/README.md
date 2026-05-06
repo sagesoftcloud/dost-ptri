@@ -2,12 +2,16 @@
 
 ## DOST PTRI - AWS Fundamentals Training Program
 
-A sample CI/CD project demonstrating AWS CodePipeline, CodeBuild, CodeDeploy, and CloudFormation — used as a hands-on reference for Day 6.
+Hands-on labs covering Git/GitHub, AWS CodePipeline, CodeBuild, and CloudFormation — from basic to advanced.
 
-| # | Activity | Services/Tools | Time |
-|---|----------|---------------|:----:|
-| 1 | [Clone & Push to Your GitHub](./01-github-push-lab.md) | Git, GitHub | 30 min |
-| 2 | [CloudFormation Console Walkthrough](./02-cloudformation-lab.md) | CloudFormation, S3 | 30 min |
+| # | Lab | Difficulty | Time |
+|---|-----|:----------:|:----:|
+| 1 | [Clone & Push to Your GitHub](./01-github-push-lab.md) | ⭐ | 30 min |
+| 2 | [CloudFormation Console Walkthrough](./02-cloudformation-lab.md) | ⭐ | 30 min |
+| 3 | [Build Your Own CI/CD Pipeline](./03-build-your-pipeline.md) | ⭐⭐ | 45 min |
+| 4 | [CloudFormation Basic: S3 Bucket](./04-cloudformation-basic.md) | ⭐ | 20 min |
+| 5 | [CloudFormation Intermediate: VPC Stack](./05-cloudformation-intermediate.md) | ⭐⭐ | 30 min |
+| 6 | [CloudFormation Advanced: Serverless API](./06-cloudformation-advanced.md) | ⭐⭐⭐ | 40 min |
 
 ### Prerequisites
 
@@ -34,18 +38,9 @@ cicd-deployment/
     └── validate_service.sh
 ```
 
-### How the Pipeline Works
-
-```
-GitHub Push → CodePipeline → CodeBuild → CodeDeploy → EC2
-                                │              │
-                          buildspec.yml    appspec.yml
-                          (build & test)   (deploy steps)
-```
-
 ### ⚠️ Cost
 
-CloudFormation and S3 (within free tier) cost **$0**. The pipeline template is for reference only — do not deploy it unless instructed.
+All labs use free-tier eligible services. Clean up resources after each lab to avoid charges.
 
 ---
 
