@@ -251,10 +251,14 @@ sudo systemctl enable codedeploy-agent
 
 | Setting | Value |
 |---------|-------|
-| Build provider | **AWS CodeBuild** |
+| Build provider | Click **Other build providers** |
+| Provider | **AWS CodeBuild** |
 | Region | **Asia Pacific (Singapore)** |
 | Project name | `dost-ptri-day6-build` |
 | Build type | **Single build** |
+| Input artifacts | `SourceArtifact` |
+
+> ⚠️ The default is "Commands" (inline shell). Click **Other build providers** to select your CodeBuild project.
 
 5. Click **Next**
 

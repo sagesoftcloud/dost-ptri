@@ -339,7 +339,8 @@ Should show: `active (running)` ✅
 - Click **Next**
 
 **Step 4: Add build stage**
-- Build provider: **AWS CodeBuild**
+- Click **Other build providers** (not "Commands")
+- Provider: **AWS CodeBuild**
 - Region: **Asia Pacific (Singapore)**
 - Project name: `dost-ptri-final-build`
 - Click **Next**
