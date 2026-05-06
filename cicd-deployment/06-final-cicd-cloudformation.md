@@ -358,6 +358,33 @@ Should show: `active (running)` ✅
 **Step 7: Review**
 - Review all stages → **Create pipeline**
 
+### C3. Fix Pipeline Permissions (required)
+
+The auto-created role is missing GitHub connection permissions:
+
+1. **IAM** → Roles → search for `AWSCodePipelineServiceRole-ap-southeast-1-dost-ptri-final`
+2. **Add permissions** → **Create inline policy** → JSON:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "codeconnections:UseConnection",
+        "codeconnections:GetConnection",
+        "codeconnections:GetConnectionToken"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+3. Policy name: `CodeConnectionsAccess` → **Create policy**
+4. Go back to CodePipeline → **Retry** the failed Source stage
+
 ---
 
 ## Part D: Watch the Full Flow (10 min)

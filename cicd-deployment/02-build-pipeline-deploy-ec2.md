@@ -281,6 +281,36 @@ sudo systemctl enable codedeploy-agent
 
 8. Review all stages → Click **Create pipeline**
 
+### C3. Fix Pipeline Permissions (required)
+
+The auto-created pipeline role is missing GitHub connection permissions. Fix it now:
+
+1. Go to **IAM Console** → **Roles**
+2. Search for `AWSCodePipelineServiceRole-ap-southeast-1-dost-ptri-day6-pipeli`
+3. Click the role → **Add permissions** → **Create inline policy**
+4. Click **JSON** tab, paste:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "codeconnections:UseConnection",
+        "codeconnections:GetConnection",
+        "codeconnections:GetConnectionToken"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+5. Policy name: `CodeConnectionsAccess`
+6. Click **Create policy**
+7. Go back to **CodePipeline** → select your pipeline → click **Retry** on the failed Source stage
+
 ---
 
 ## Part D: Watch the Full Deployment (10 min)
