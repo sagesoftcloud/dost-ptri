@@ -42,14 +42,19 @@ git config --global user.email "your.email@example.com"
 
 ## Step 3: Clone This Project (5 min)
 
+### Clone only the CI/CD folder (not the entire repo)
+
 ```bash
-git clone https://github.com/sagesoftcloud/dost-ptri.git
+git clone --depth 1 --filter=blob:none --sparse https://github.com/sagesoftcloud/dost-ptri.git
+cd dost-ptri
+git sparse-checkout set cicd-deployment
 ```
 
-### Navigate to the CI/CD project folder
+### Copy to your own project folder
 
 ```bash
-cd dost-ptri/cicd-deployment
+cp -r cicd-deployment ~/dost-ptri-day6-cicd
+cd ~/dost-ptri-day6-cicd
 ```
 
 ### Verify the files
@@ -69,16 +74,6 @@ pipeline-template.yaml lab-s3-versioning.yaml scripts/
 ---
 
 ## Step 4: Create Your Own Repo from These Files (10 min)
-
-### Create a new directory and copy the files
-
-```bash
-cd ~
-mkdir dost-ptri-day6-cicd
-cp -r dost-ptri/cicd-deployment/* dost-ptri-day6-cicd/
-cp -r dost-ptri/cicd-deployment/.* dost-ptri-day6-cicd/ 2>/dev/null
-cd dost-ptri-day6-cicd
-```
 
 ### Initialize a fresh Git repository
 
