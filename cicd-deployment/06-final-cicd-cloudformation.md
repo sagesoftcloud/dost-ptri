@@ -254,23 +254,67 @@ Should show: `active (running)` ✅
 
 ### C1. Create CodeBuild Project
 
-1. **CodeBuild** → Create project
-   - Name: `dost-ptri-final-build`
-   - Source provider: **GitHub**
-   - You'll see: *"You have not connected to GitHub. Manage account credentials."*
-   - Click **Manage account credentials** → **Manage default source credential** dialog:
+1. **CodeBuild** → **Create build project**
+
+**Project configuration:**
+
+| Setting | Value |
+|---------|-------|
+| Project name | `dost-ptri-final-build` |
+| Project type | **Default project** |
+
+**Source:**
+
+| Setting | Value |
+|---------|-------|
+| Source provider | **GitHub** |
+
+2. You'll see: *"You have not connected to GitHub. Manage account credentials."*
+   - Click **Manage account credentials**
+   - **Manage default source credential** dialog:
      - Source Provider: **GitHub**
      - Credential type: **GitHub App**
      - Connection: Click **Create a new GitHub connection**
      - Connection name: `dost-ptri-github`
-     - Click **Connect to GitHub** → Authorize → Select your account → Only select repositories → `dost-ptri-day6-cicd` → Install & Authorize
-     - Back in AWS → Click **Connect** → Status: **Available** ✅ → **Save**
-   - Now select repository: your `dost-ptri-day6-cicd` repo
-   - Branch: `main`
-   - Environment: Amazon Linux, Standard, `5.0`
-   - Buildspec: `buildspec.yml`
-   - Artifacts: No artifacts (pipeline handles it)
-2. Create
+     - Click **Connect to GitHub** → Authorize → Select account → Only select repositories → `dost-ptri-day6-cicd` → Install & Authorize
+     - Back in AWS → **Connect** → Status: **Available** ✅ → **Save**
+
+3. You'll see: *"Your account is successfully connected by using an AWS managed GitHub App."*
+
+| Setting | Value |
+|---------|-------|
+| Connection | Select your connection ARN |
+| Repository | **Repository in my GitHub account** → `dost-ptri-day6-cicd` |
+| Source version | Leave blank |
+| Webhook | ❌ Unchecked |
+| Build type | **Single build** |
+
+**Environment:**
+
+| Setting | Value |
+|---------|-------|
+| Provisioning model | **On-demand** |
+| Environment image | **Managed image** |
+| Compute | **EC2** |
+| Running mode | **Container** |
+| Operating system | **Amazon Linux** |
+| Runtime | **Standard** |
+| Image | `aws/codebuild/amazonlinux-x86_64-standard:6.0` |
+| Service role | **New service role** |
+
+**Buildspec:**
+
+| Setting | Value |
+|---------|-------|
+| Build specifications | **Use a buildspec file** |
+
+**Artifacts:**
+
+| Setting | Value |
+|---------|-------|
+| Type | **No artifacts** |
+
+4. Click **Create build project**
 
 ### C2. Create CodePipeline
 

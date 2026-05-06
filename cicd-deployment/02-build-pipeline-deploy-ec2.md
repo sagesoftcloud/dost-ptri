@@ -133,9 +133,17 @@ sudo systemctl enable codedeploy-agent
 
 1. Go to **CodeBuild** → **Create build project**
 
+**Project configuration:**
+
 | Setting | Value |
 |---------|-------|
 | Project name | `dost-ptri-day6-build` |
+| Project type | **Default project** |
+
+**Source:**
+
+| Setting | Value |
+|---------|-------|
 | Source provider | **GitHub** |
 
 2. You'll see: *"You have not connected to GitHub. Manage account credentials."*
@@ -152,19 +160,56 @@ sudo systemctl enable codedeploy-agent
      - Click **Install & Authorize**
      - Back in AWS → Click **Connect**
      - Status shows **Available** ✅ → Click **Save**
-   - Now select your repository: `dost-ptri-day6-cicd`
+
+3. You'll now see: *"Your account is successfully connected by using an AWS managed GitHub App."*
 
 | Setting | Value |
 |---------|-------|
-| Repository | Your `dost-ptri-day6-cicd` repo |
-| Branch | `main` |
-| Environment | Managed image, Amazon Linux, Standard, `5.0` |
-| Buildspec | Use a buildspec file |
-| Artifacts | **Amazon S3** |
-| Bucket | Create one: `dost-ptri-day6-artifacts-YOURNAME` |
-| Artifacts packaging | **Zip** |
+| Connection | Select your connection ARN from the dropdown |
+| Repository | **Repository in my GitHub account** |
+| Repository | Select `dost-ptri-day6-cicd` |
+| Source version | Leave blank |
 
-3. Click **Create build project**
+**Primary source webhook events:**
+
+| Setting | Value |
+|---------|-------|
+| Webhook | ❌ Leave unchecked (pipeline handles triggers) |
+| Build type | **Single build** |
+
+**Environment:**
+
+| Setting | Value |
+|---------|-------|
+| Provisioning model | **On-demand** |
+| Environment image | **Managed image** |
+| Compute | **EC2** |
+| Running mode | **Container** |
+| Operating system | **Amazon Linux** |
+| Runtime | **Standard** |
+| Image | `aws/codebuild/amazonlinux-x86_64-standard:6.0` |
+| Image version | **Always use the latest image** |
+| Service role | **New service role** |
+
+**Buildspec:**
+
+| Setting | Value |
+|---------|-------|
+| Build specifications | **Use a buildspec file** |
+
+**Artifacts:**
+
+| Setting | Value |
+|---------|-------|
+| Type | **No artifacts** |
+
+**Logs:**
+
+| Setting | Value |
+|---------|-------|
+| CloudWatch logs | ✅ Checked (default) |
+
+4. Click **Create build project**
 
 ### C2. Create CodePipeline
 
