@@ -199,4 +199,4 @@ Delete stack → all resources removed ✅
 
 ---
 
-**Next → [Lab 06: Final — CI/CD + CloudFormation Deploy EC2](./06-final-cicd-cloudformation.md)**
+**← [Back to Lab Overview](./README.md)**

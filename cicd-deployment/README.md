@@ -19,12 +19,6 @@ Hands-on labs covering Git/GitHub, AWS CodePipeline with real EC2 deployment, an
 | 4 | [Intermediate: VPC Stack](./04-cloudformation-intermediate.md) | ⭐⭐ | 30 min |
 | 5 | [Advanced: Serverless API](./05-cloudformation-advanced.md) | ⭐⭐⭐ | 40 min |
 
-### Final Lab
-
-| # | Lab | What You'll Do | Time |
-|---|-----|---------------|:----:|
-| 6 | [CI/CD + CloudFormation: Deploy EC2](./06-final-cicd-cloudformation.md) | Provision EC2 via CFN, then deploy app via pipeline | 60 min |
-
 ---
 
 ### Prerequisites
