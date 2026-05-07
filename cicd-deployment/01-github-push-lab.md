@@ -6,6 +6,12 @@ Clone this project, create your own GitHub repository, and push the code — sim
 
 ---
 
+## ⚠️ Naming Convention
+
+Replace `YOURNAME` with your name (lowercase, no spaces) in all resource names throughout the labs.
+
+---
+
 ## Step 1: Install & Configure Git (5 min)
 
 ### Check if Git is installed
@@ -31,7 +37,7 @@ git config --global user.email "your.email@example.com"
 
 1. Go to https://github.com/new
 2. Fill in:
-   - **Repository name:** `dost-ptri-day6-cicd`
+   - **Repository name:** `dost-ptri-day6-cicd-YOURNAME`
    - **Description:** `Day 6 CI/CD Sample — DOST PTRI Training`
    - **Visibility:** Public
    - ❌ Do NOT check "Add a README file"
@@ -53,8 +59,8 @@ git sparse-checkout set cicd-deployment
 ### Copy to your own project folder
 
 ```bash
-cp -r cicd-deployment ~/dost-ptri-day6-cicd
-cd ~/dost-ptri-day6-cicd
+cp -r cicd-deployment ~/dost-ptri-day6-cicd-YOURNAME
+cd ~/dost-ptri-day6-cicd-YOURNAME
 ```
 
 ### Verify the files
@@ -89,7 +95,7 @@ git branch -M main
 Replace `YOUR-USERNAME` with your GitHub username:
 
 ```bash
-git remote add origin https://github.com/YOUR-USERNAME/dost-ptri-day6-cicd.git
+git remote add origin https://github.com/YOUR-USERNAME/dost-ptri-day6-cicd-YOURNAME.git
 ```
 
 ### Push

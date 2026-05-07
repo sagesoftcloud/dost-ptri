@@ -22,6 +22,18 @@ GitHub → CodePipeline → CodeBuild (test) → CodeDeploy → EC2 (live app)
 
 ---
 
+## ⚠️ Naming Convention
+
+Each trainee creates their own pipeline. Replace `YOURNAME` with your name (lowercase, no spaces) in ALL resource names.
+
+**Example:** If your name is Juan, your resources will be:
+- EC2: `dost-ptri-day6-server-juan`
+- CodeBuild: `dost-ptri-day6-build-juan`
+- Pipeline: `dost-ptri-day6-pipeline-juan`
+- CodeDeploy app: `dost-ptri-day6-app-juan`
+
+---
+
 ## Part A: Launch an EC2 Instance (15 min)
 
 You need a real server to deploy to.
@@ -29,6 +41,8 @@ You need a real server to deploy to.
 ### A1. Create an IAM Role for EC2
 
 CodeDeploy needs the EC2 instance to have an agent that communicates with AWS.
+
+> 💡 **Only one trainee needs to create this role** — it's shared by all 6 instances. If it already exists, skip to A2.
 
 1. Go to **IAM Console** → **Roles** → **Create role**
 2. Trusted entity: **AWS service** → **EC2**
@@ -45,13 +59,13 @@ CodeDeploy needs the EC2 instance to have an agent that communicates with AWS.
 
 | Setting | Value |
 |---------|-------|
-| Name | `dost-ptri-day6-app-server` |
+| Name | `dost-ptri-day6-server-YOURNAME` |
 | AMI | **Amazon Linux 2023** |
 | Instance type | `t2.micro` (free tier) |
-| Key pair | Create new → `dost-ptri-day6-key` → Download |
+| Key pair | Create new → `dost-ptri-day6-key-YOURNAME` → Download |
 | Network | Default VPC, public subnet |
 | Auto-assign public IP | **Enable** |
-| Security group | Create new: `dost-ptri-day6-sg` |
+| Security group | Create new: `dost-ptri-day6-sg-YOURNAME` |
 | Inbound rules | SSH (22) from **My IP**, HTTP (8080) from Anywhere |
 | IAM instance profile | Select `dost-ptri-ec2-codedeploy-role` |
 
@@ -81,7 +95,7 @@ sudo systemctl enable codedeploy-agent
 1. Select your instance → **Tags** tab → **Manage tags**
 2. Add tag:
    - Key: `DeployGroup`
-   - Value: `dost-ptri-day6`
+   - Value: `dost-ptri-day6-YOURNAME`
 3. Save
 
 > 💡 CodeDeploy uses this tag to find which instances to deploy to.
@@ -91,6 +105,8 @@ sudo systemctl enable codedeploy-agent
 ## Part B: Create CodeDeploy Application (10 min)
 
 ### B1. Create IAM Role for CodeDeploy Service
+
+> 💡 **Only one trainee needs to create this role** — shared by all. Skip if it already exists.
 
 1. Go to **IAM** → **Roles** → **Create role**
 2. Trusted entity: **AWS service** → **CodeDeploy**
@@ -102,7 +118,7 @@ sudo systemctl enable codedeploy-agent
 ### B2. Create the CodeDeploy Application
 
 1. Go to **CodeDeploy Console** → **Applications** → **Create application**
-2. Application name: `dost-ptri-day6-app`
+2. Application name: `dost-ptri-day6-app-YOURNAME`
 3. Compute platform: **EC2/On-premises**
 4. Click **Create application**
 
@@ -113,12 +129,12 @@ sudo systemctl enable codedeploy-agent
 
 | Setting | Value |
 |---------|-------|
-| Deployment group name | `dost-ptri-day6-deploy-group` |
+| Deployment group name | `dost-ptri-day6-deploy-group-YOURNAME` |
 | Service role | Select `dost-ptri-codedeploy-service-role` |
 | Deployment type | **In-place** |
 | Environment configuration | **Amazon EC2 instances** |
 | Tag group: Key | `DeployGroup` |
-| Tag group: Value | `dost-ptri-day6` |
+| Tag group: Value | `dost-ptri-day6-YOURNAME` |
 | Agent configuration | **Now and schedule updates** |
 | Deployment settings | `CodeDeployDefault.AllAtOnce` |
 | Load balancer | ❌ Uncheck "Enable load balancing" |
@@ -137,7 +153,7 @@ sudo systemctl enable codedeploy-agent
 
 | Setting | Value |
 |---------|-------|
-| Project name | `dost-ptri-day6-build` |
+| Project name | `dost-ptri-day6-build-YOURNAME` |
 | Project type | **Default project** |
 
 **Source:**
@@ -152,11 +168,11 @@ sudo systemctl enable codedeploy-agent
      - Source Provider: **GitHub**
      - Credential type: **GitHub App**
      - Connection: Click **Create a new GitHub connection**
-     - Connection name: `dost-ptri-github`
+     - Connection name: `dost-ptri-github-YOURNAME`
      - Click **Connect to GitHub**
      - A popup opens → Click **Authorize AWS Connector for GitHub**
      - Select your GitHub account
-     - Choose **Only select repositories** → select `dost-ptri-day6-cicd`
+     - Choose **Only select repositories** → select `dost-ptri-day6-cicd-YOURNAME`
      - Click **Install & Authorize**
      - Back in AWS → Click **Connect**
      - Status shows **Available** ✅ → Click **Save**
@@ -167,7 +183,7 @@ sudo systemctl enable codedeploy-agent
 |---------|-------|
 | Connection | Select your connection ARN from the dropdown |
 | Repository | **Repository in my GitHub account** |
-| Repository | Select `dost-ptri-day6-cicd` |
+| Repository | Select `dost-ptri-day6-cicd-YOURNAME` |
 | Source version | Leave blank |
 
 **Primary source webhook events:**
@@ -229,7 +245,7 @@ sudo systemctl enable codedeploy-agent
 
 | Setting | Value |
 |---------|-------|
-| Pipeline name | `dost-ptri-day6-pipeline` |
+| Pipeline name | `dost-ptri-day6-pipeline-YOURNAME` |
 | Execution mode | **Superseded** |
 | Service role | **New service role** |
 
@@ -241,7 +257,7 @@ sudo systemctl enable codedeploy-agent
 |---------|-------|
 | Source provider | **GitHub (Version 2)** |
 | Connection | Select `dost-ptri-github` (created earlier in CodeBuild) |
-| Repository name | Your `dost-ptri-day6-cicd` repo |
+| Repository name | Your `dost-ptri-day6-cicd-YOURNAME` repo |
 | Branch name | `main` |
 | Trigger | **Push to branch** |
 
@@ -254,7 +270,7 @@ sudo systemctl enable codedeploy-agent
 | Build provider | Click **Other build providers** |
 | Provider | **AWS CodeBuild** |
 | Region | **Asia Pacific (Singapore)** |
-| Project name | `dost-ptri-day6-build` |
+| Project name | `dost-ptri-day6-build-YOURNAME` |
 | Build type | **Single build** |
 | Input artifacts | `SourceArtifact` |
 
@@ -272,8 +288,8 @@ sudo systemctl enable codedeploy-agent
 |---------|-------|
 | Deploy provider | **AWS CodeDeploy** |
 | Region | **Asia Pacific (Singapore)** |
-| Application name | `dost-ptri-day6-app` |
-| Deployment group | `dost-ptri-day6-deploy-group` |
+| Application name | `dost-ptri-day6-app-YOURNAME` |
+| Deployment group | `dost-ptri-day6-deploy-group-YOURNAME` |
 
 7. Click **Next**
 
@@ -286,7 +302,7 @@ sudo systemctl enable codedeploy-agent
 The auto-created pipeline role is missing GitHub connection permissions. Fix it now:
 
 1. Go to **IAM Console** → **Roles**
-2. Search for `AWSCodePipelineServiceRole-ap-southeast-1-dost-ptri-day6-pipeli`
+2. Search for `AWSCodePipelineServiceRole-ap-southeast-1-dost-ptri-day6-pipeli` (your pipeline role — name may vary with `YOURNAME`)
 3. Click the role → **Add permissions** → **Create inline policy**
 4. Click **JSON** tab, paste:
 
@@ -433,7 +449,7 @@ Delete in this order:
 4. **EC2** → Terminate instance
 5. **S3** → Empty and delete artifact bucket
 6. **IAM** → Delete both roles (`ec2-codedeploy-role`, `codedeploy-service-role`)
-7. **CodePipeline** → Settings → Connections → Delete `dost-ptri-github`
+7. **CodePipeline** → Settings → Connections → Delete `dost-ptri-github-YOURNAME`
 
 ---
 
