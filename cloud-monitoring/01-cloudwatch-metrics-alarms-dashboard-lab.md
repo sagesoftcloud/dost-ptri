@@ -36,27 +36,36 @@ This lab walks you through launching an EC2 instance, generating CPU load, obser
    - **AMI:** Amazon Linux 2023 (default)
    - **Instance type:** `t3.micro`
    - **Key pair:** Proceed without a key pair (we'll use EC2 Instance Connect)
-   - **Network settings:** Allow SSH from anywhere (for Instance Connect)
+   - **Network settings:**
+     - Click **Edit**
+     - **Auto-assign public IP:** **Enable** ⚠️ (required for Instance Connect & SSM)
+     - **Security group:** Allow SSH from anywhere (for Instance Connect)
+   - **Advanced details:**
+     - **IAM instance profile:** Select a role with `AmazonSSMManagedInstanceCore` and `CloudWatchAgentServerPolicy` ⚠️
+     - If no role exists, create one first: IAM → Roles → Create role → **EC2** → attach `AmazonSSMManagedInstanceCore` + `CloudWatchAgentServerPolicy` → name it `day7-ec2-monitoring-role`
    - **Everything else:** Leave defaults
 3. Click **Launch instance**
 4. Wait until **Instance state** = `Running`
+
+> ⚠️ **Common errors if you skip the above:**
+> - **No public IP** → EC2 Instance Connect won't work, SSM Agent can't reach AWS endpoints
+> - **No IAM role at launch** → SSM Agent starts on boot without credentials and fails with: `SSM Agent unable to acquire credentials`
 
 ---
 
 ## Step 2: Install CloudWatch Agent & Generate Load (20 min)
 
-### 2.1 Attach IAM Role (if not already attached)
+### 2.1 Verify IAM Role is Attached
 
-Your EC2 instance needs permissions for SSM and CloudWatch:
+Your EC2 instance needs permissions for SSM and CloudWatch. If you followed Step 1 correctly, the role is already attached.
 
 1. Go to **EC2 Console** → select your instance
 2. Click **Actions** → **Security** → **Modify IAM role**
-3. Select a role with these policies (or create one):
+3. Verify a role with these policies is attached:
    - `CloudWatchAgentServerPolicy`
    - `AmazonSSMManagedInstanceCore`
-4. Click **Update IAM role**
 
-> 💡 If no role exists, create one in IAM → Roles → Create role → EC2 → attach both policies above.
+> ⚠️ If no role is attached, select `day7-ec2-monitoring-role` (created in Step 1) and click **Update IAM role**. Then **reboot the instance** so the SSM Agent picks up the new credentials.
 
 ### 2.2 Install CloudWatch Agent via EC2 Console
 
