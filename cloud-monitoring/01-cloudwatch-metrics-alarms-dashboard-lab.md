@@ -73,11 +73,46 @@ No SSH needed — install directly from the EC2 Monitoring tab:
 
 ### 2.3 Configure the Agent
 
-1. Once installed, click **Configure** next to your instance
-2. Select the default configuration (collects memory and disk metrics)
-3. Click **Apply**
+After installation, you'll go through 3 steps:
 
-> After configuration, metrics will appear under the **CWAgent** namespace in CloudWatch within 5 minutes.
+#### Step 1: Agent Status
+- Verify your instance shows **CloudWatch Agent: Installed** ✅
+- Click **Next**
+
+#### Step 2: Edit Configuration
+
+AWS auto-detects your instance and recommends metrics. Review the settings:
+
+| Setting | Value | Description |
+|---------|-------|-------------|
+| **Collection interval** | `60` seconds | How often metrics are collected |
+| **Metric namespace** | `CWAgent` | Where metrics appear in CloudWatch |
+| **Region** | `ap-southeast-1` | Your AWS region |
+
+**Global dimensions** (select these):
+- ✅ `InstanceId`
+- ✅ `InstanceType`
+
+> These dimensions let you filter metrics per instance later.
+
+**Aggregation dimensions:**
+- Keep default: `InstanceId`
+
+**Selected metrics:**
+- AWS auto-selects ~23 essential metrics (CPU, memory, disk, network)
+- Review the list — you should see `mem_used_percent`, `disk_used_percent`
+- You can add/remove metrics or keep the recommendations
+
+> 💡 **Compute Optimizer enabled** — this feeds data to AWS for right-sizing recommendations later in Cost Explorer.
+
+Click **Next**
+
+#### Step 3: Review and Deploy
+- Review your configuration summary
+- Click **Deploy**
+- Wait for the configuration to be applied to your instance
+
+> After deployment, metrics will appear under the **CWAgent** namespace in CloudWatch within 5 minutes.
 
 ### 2.4 Connect to Instance & Generate CPU + Memory Stress
 
