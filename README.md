@@ -12,3 +12,4 @@
 | [ML/AI — SageMaker AI & Bedrock](./ml-ai/) | SageMaker AI console walkthrough + Amazon Bedrock GenAI hands-on workshop |
 | [CI/CD & Infrastructure as Code](./cicd-deployment/) | CI/CD pipeline demo with CodeBuild, CodeDeploy, and CloudFormation IaC |
 | [Cloud Monitoring & Observability](./cloud-monitoring/) | CloudWatch metrics, alarms, agent install, CloudTrail, Cost Explorer, Trusted Advisor |
+| [Cost Optimization & Resource Management](./cost-optimization/) | S3 Lifecycle, Automated EC2 On/Off (Lambda + EventBridge), Pricing Calculator, Cost Allocation Tags |
